@@ -3,7 +3,7 @@ import { NightmarePlugins } from "@browser/nightmarePlugins";
 import { SettingsAPI } from "@apis/settings";
 import { ProfilesAPI } from "@apis/profiles";
 import { Proxy } from "@apis/proxy";
-import { Global } from "@js/global/index";
+import { DDXGlobal } from "@js/global/index";
 
 document.addEventListener("DOMContentLoaded", async () => {
   const nightmare = new Nightmare();
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   };
 
   // @ts-expect-error
-  const globalFunctions = new Global();
+  const globalFunctions = new DDXGlobal();
 
   async function getFavicon(url: string) {
     try {

@@ -1,12 +1,12 @@
 import { SettingsAPI } from "@apis/settings";
 import { EventSystem } from "@apis/events";
-import { Global } from "@js/global";
+import { DDXGlobal } from "@js/global";
 import iro from "@jaames/iro";
 
 const settingsAPI = new SettingsAPI();
 const eventsAPI = new EventSystem();
 // @ts-expect-error
-const globalFunctions = new Global();
+const globalFunctions = new DDXGlobal();
 
 const initializeDropdown = async (
   buttonId: string,

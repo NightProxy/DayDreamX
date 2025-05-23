@@ -3,7 +3,7 @@ import { Themeing } from "@js/global/theming";
 import { Windowing } from "@browser/windowing";
 import { EventSystem } from "@apis/events";
 
-interface GlobalInterface {
+interface DDXGlobalInterface {
   settings: SettingsAPI;
   events: EventSystem;
   theming: Themeing;
@@ -11,7 +11,7 @@ interface GlobalInterface {
   init: () => Promise<void>;
 }
 
-class Global implements GlobalInterface {
+class DDXGlobal implements DDXGlobalInterface {
   settings: SettingsAPI;
   events: EventSystem;
   theming: Themeing;
@@ -56,4 +56,4 @@ class Global implements GlobalInterface {
     }
   }
 }
-export { Global };
+export { DDXGlobal };

@@ -6,7 +6,7 @@ import { ProfilesAPI } from "@apis/profiles";
 import { Logger } from "@apis/logging";
 import { Proxy } from "@apis/proxy";
 import { Windowing } from "@browser/windowing";
-import { Global } from "@js/global/index";
+import { DDXGlobal } from "@js/global/index";
 import { Render } from "@browser/render";
 import { Items } from "@browser/items";
 import { Protocols } from "@browser/protocols";
@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   };
   const proto = new Protocols(swConfig, proxySetting);
   const windowing = new Windowing();
-  const globalFunctions = new Global();
+  const globalFunctions = new DDXGlobal();
   const render = new Render(
     document.getElementById("browser-container") as HTMLDivElement
   );

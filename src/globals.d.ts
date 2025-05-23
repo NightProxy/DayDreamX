@@ -12,7 +12,7 @@ declare global {
     protocols: Protocols;
     logging: Logger;
     profiles: ProfilesAPI;
-    globals: Global;
+    globals: DDXGlobal;
     renderer: Render;
     items: Items;
     utils: Utils;

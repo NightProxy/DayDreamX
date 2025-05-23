@@ -1,6 +1,6 @@
 import { Nightmare } from "@libs/Nightmare/nightmare";
 import { SettingsAPI } from "@apis/settings";
-import { Global } from "@js/global";
+import { DDXGlobal } from "@js/global";
 import { Proxy } from "@apis/proxy";
 
 (async () => {
@@ -9,7 +9,7 @@ import { Proxy } from "@apis/proxy";
   const settingsAPI = new SettingsAPI();
 
   // @ts-expect-error
-  const global = new Global();
+  const global = new DDXGlobal();
 
   const proxy = new Proxy();
 
