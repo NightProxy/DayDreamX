@@ -10,6 +10,7 @@ import { epoxyPath } from "@mercuryworkshop/epoxy-transport";
 import { libcurlPath } from "@mercuryworkshop/libcurl-transport";
 import { baremuxPath } from "@mercuryworkshop/bare-mux/node";
 import { uvPath } from "@titaniumnetwork-dev/ultraviolet";
+import { scramjetPath } from "@mercuryworkshop/scramjet";
 import { server as wisp } from "@mercuryworkshop/wisp-js/server";
 
 const pages: Record<string, string> = {
@@ -41,8 +42,32 @@ function prettyUrlsPlugin() {
   };
 }
 
+const newScramPath = 'assets';
+const newUVPath = 'data';
+
 export default defineConfig({
-  plugins: [tsconfigPaths(), ViteMinifyPlugin(), prettyUrlsPlugin()],
+  plugins: [tsconfigPaths(), ViteMinifyPlugin(), prettyUrlsPlugin(),
+  viteStaticCopy({
+    targets: [
+      { src: `${epoxyPath}/*`, dest: 'epoxy' },
+      { src: `${uvPath}/uv.bundle.js`, dest: newUVPath, rename: 'bundle.js' },
+      { src: `${uvPath}/uv.handler.js`, dest: newUVPath, rename: 'handler.js' },
+      { src: `${uvPath}/uv.client.js`, dest: newUVPath, rename: 'client.js' },
+//      { src: `${uvPath}/uv.config.js`, dest: newUVPath, rename: 'config.js' }, dont replace the config.js
+      { src: `${uvPath}/uv.sw.js`, dest: newUVPath, rename: 'sww.js' },
+
+      { src: `${scramjetPath}/scramjet.client.js`, dest: newScramPath, rename: 'client.js' },
+      { src: `${scramjetPath}/scramjet.controller.js`, dest: newScramPath, rename: 'controller.js' },
+      { src: `${scramjetPath}/scramjet.shared.js`, dest: newScramPath, rename: 'shared.js' },
+      { src: `${scramjetPath}/scramjet.sync.js`, dest: newScramPath, rename: 'sync.js' },
+      { src: `${scramjetPath}/scramjet.wasm.wasm`, dest: newScramPath, rename: 'wasm.wasm' },
+      { src: `${scramjetPath}/scramjet.worker.js`, dest: newScramPath, rename: 'worker.js' },
+
+      { src: `${libcurlPath}/*`, dest: 'libcurl' },
+      { src: `${baremuxPath}/*`, dest: 'baremux' }
+    ]
+  })
+  ],
   appType: "mpa",
   build: {
     emptyOutDir: true,

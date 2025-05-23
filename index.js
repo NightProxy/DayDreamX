@@ -3,10 +3,10 @@ import http from "node:http";
 import cors from "cors";
 import compression from "compression";
 import chalk from "chalk";
-import { epoxyPath } from "@mercuryworkshop/epoxy-transport";
+/*import { epoxyPath } from "@mercuryworkshop/epoxy-transport";
 import { libcurlPath } from "@mercuryworkshop/libcurl-transport";
 import { baremuxPath } from "@mercuryworkshop/bare-mux/node";
-import { uvPath } from "@titaniumnetwork-dev/ultraviolet";
+import { uvPath } from "@titaniumnetwork-dev/ultraviolet";*/
 import { server as wisp, logging } from "@mercuryworkshop/wisp-js/server";
 import gradient from "gradient-string";
 import fs from "node:fs";
@@ -14,7 +14,7 @@ import Git from "./srv/git.js";
 import { execSync } from "child_process";
 import router from "./srv/router.js";
 import path from "node:path";
-import { scramjetPath } from "@mercuryworkshop/scramjet"
+// import { scramjetPath } from "@mercuryworkshop/scramjet"
 
 let git_url = "https://github.com/NightProxy/DayDreamX";
 let commit = "Unable to get this information.";
@@ -51,7 +51,7 @@ try {
   app.use(cors());
   app.use(compression());
   app.use(express.static(path.join(process.cwd(), "dist/")));
-  app.use("/epoxy/", express.static(epoxyPath));
+  /*app.use("/epoxy/", express.static(epoxyPath));
   app.use("/data/:fileName", (req, res, next) => {
     const filenameMapping = {
       "bundle.js": "uv.bundle.js",
@@ -101,7 +101,7 @@ try {
   });
   app.use("/data/", express.static(uvPath));
   app.use("/libcurl/", express.static(libcurlPath));
-  app.use("/baremux/", express.static(baremuxPath)); // proxy stuff
+  app.use("/baremux/", express.static(baremuxPath)); // proxy stuff */
   app.use("/", router);
 
   server.on("request", (req, res) => {
