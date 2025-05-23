@@ -106,7 +106,7 @@ declare global {
 
   declare class ScramjetController {
     constructor(opts: SJOptions);
-    init(path: string): Promise<void>;
+    init(path?: string): Promise<void>;
     encodeUrl(term: string): string;
   }
 }

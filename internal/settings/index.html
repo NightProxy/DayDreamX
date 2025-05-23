@@ -25,32 +25,32 @@
     </div>
     <ul class="sideSnav">
       <h1>Settings</h1>
-      <a href="#Cloaking">
+      <a section="#Cloaking">
         <li class="settingItem" data-id="cloak">
           <span class="material-symbols-outlined">preview</span
           ><span>Cloaking</span>
         </li>
       </a>
-      <a href="#Themes">
+      <a section="#Themes">
         <li class="settingItem" data-id="themes">
           <span class="material-symbols-outlined">palette</span
           ><span>Appearance</span>
         </li>
       </a>
-      <a href="#Searching">
+      <a section="#Searching">
         <li class="settingItem" data-id="searching">
           <span class="material-symbols-outlined">manage_search</span
           ><span>Search</span>
         </li>
       </a>
-      <a href="#Misc">
+      <a section="#Misc">
         <li class="settingItem" data-id="misc">
           <span class="material-symbols-outlined">more_vert</span
           ><span>Other</span>
         </li>
       </a>
       <hr />
-      <a href="#About">
+      <a section="#About">
         <li class="settingItem" data-id="about">
           <span class="material-symbols-outlined">info</span
           ><span>About & Statistics</span>
@@ -113,10 +113,10 @@
               </li>
             </ul>
           </div>
-          <div class="section-vert">
-            <input type="text" id="tabCloakTitle" />
-            <input type="text" id="tabCloakFavicon" />
-          </div>
+        </div>
+        <div class="section-horiz">
+          <h5 style="margin-left: 10px">Anti-Close</h5>
+          <input class="switch" id="antiCloseSwitch" type="checkbox" />
         </div>
       </div>
       <h1 id="Themes">Appearance</h1>
@@ -258,11 +258,6 @@
                 <li>
                   <a data-value="sj"
                     ><img src="/res/proxies/sj.png" />Scramjet</a
-                  >
-                </li>
-                <li>
-                  <a data-value="dy"
-                    ><img src="/res/proxies/dy.png" />Dynamic</a
                   >
                 </li>
               </ul>

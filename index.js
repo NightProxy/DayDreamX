@@ -14,6 +14,7 @@ import Git from "./srv/git.js";
 import { execSync } from "child_process";
 import router from "./srv/router.js";
 import path from "node:path";
+import { scramjetPath } from "@mercuryworkshop/scramjet"
 
 let git_url = "https://github.com/NightProxy/DayDreamX";
 let commit = "Unable to get this information.";
@@ -51,7 +52,7 @@ try {
   app.use(compression());
   app.use(express.static(path.join(process.cwd(), "dist/")));
   app.use("/epoxy/", express.static(epoxyPath));
-  app.use("/@/:fileName", (req, res, next) => {
+  app.use("/data/:fileName", (req, res, next) => {
     const filenameMapping = {
       "bundle.js": "uv.bundle.js",
       "handler.js": "uv.handler.js",
@@ -74,7 +75,31 @@ try {
       next();
     }
   });
-  app.use("/@/", express.static(uvPath));
+  app.use("/assets/:fileName", (req, res, next) => {
+    const filenameMapping = {
+      "client.js": "scramjet.client.js",
+      "controller.js": "scramjet.controller.js",
+      "shared.js": "scramjet.shared.js",
+      "sync.js": "scramjet.sync.js",
+      "wasm.wasm": "scramjet.wasm.wasm",
+      "worker.js": "scramjet.worker.js",
+    };
+    const requestedFile = req.params.fileName;
+    const mappedFileName = filenameMapping[requestedFile];
+
+    if (mappedFileName) {
+      const filePath = path.join(scramjetPath, mappedFileName);
+
+      if (fs.existsSync(filePath)) {
+        return res.sendFile(filePath);
+      } else {
+        return res.status(404).send("File not found.");
+      }
+    } else {
+      next();
+    }
+  });
+  app.use("/data/", express.static(uvPath));
   app.use("/libcurl/", express.static(libcurlPath));
   app.use("/baremux/", express.static(baremuxPath)); // proxy stuff
   app.use("/", router);
@@ -86,6 +111,8 @@ try {
   server.on("upgrade", (req, socket, head) => {
     if (req.url.endsWith("/wisp/")) {
       wisp.routeRequest(req, socket, head);
+    } else {
+      socket.destroy();
     }
   });
 

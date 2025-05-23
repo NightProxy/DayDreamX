@@ -32,6 +32,10 @@ class Windowing implements WindowingInterface {
       link.href =
         (await this.settings.getItem("favicon")) ||
         location.href + "/res/logo.png";
+      aboutBlankTab!.window.addEventListener("beforeunload", (event) => {
+        event.preventDefault();
+        event.returnValue = "";
+      });
       aboutBlankTab!.document.head.appendChild(link);
       aboutBlankTab!.document.body.appendChild(iframe);
     } else {
@@ -55,6 +59,10 @@ class Windowing implements WindowingInterface {
       link.href =
         (await this.settings.getItem("favicon")) ||
         location.href + "/res/logo.png";
+      aboutBlankTab!.window.addEventListener("beforeunload", (event) => {
+        event.preventDefault();
+        event.returnValue = "";
+      });
       aboutBlankTab!.document.head.appendChild(link);
       aboutBlankTab!.document.body.appendChild(iframe);
 
@@ -94,7 +102,11 @@ class Windowing implements WindowingInterface {
       const blob = new Blob([htmlContent], { type: "text/html" });
       const blobUrl = URL.createObjectURL(blob);
 
-      window.open(blobUrl, "_blank");
+      const blobPage = window.open(blobUrl, "_blank");
+      blobPage!.window.addEventListener("beforeunload", (event) => {
+        event.preventDefault();
+        event.returnValue = "";
+      });
     } else {
       console.log("already in blob or iframe");
     }

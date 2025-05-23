@@ -183,7 +183,7 @@ class Proxy implements ProxyInterface {
         func: swFunction,
       } = swConfig[selectedProxy] ?? {
         type: "sw",
-        file: "/@/sw.js",
+        file: "/data/sw.js",
         config: window.__uv$config,
         func: null,
       };

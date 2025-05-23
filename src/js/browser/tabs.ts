@@ -866,8 +866,8 @@ closeCurrentGroup() {
           );
           window.parent.tabs.createTab(encodedUrl, false);
         } else if (
-          url2Parse.pathname.startsWith("/@/") ||
-          url2Parse.pathname.startsWith("/$/")
+          url2Parse.pathname.startsWith("/data/") ||
+          url2Parse.pathname.startsWith("/assets/")
         ) {
           window.parent.tabs.createTab(url2Parse.href, false);
         }

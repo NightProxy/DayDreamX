@@ -15,23 +15,23 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const proxy = new Proxy();
 
-  const proxySetting = (await settingsAPI.getItem("proxy")) ?? "uv";
+  const proxySetting = (await settingsAPI.getItem("proxy")) ?? "sj";
   let swConfigSettings: Record<string, any> = {};
   const swConfig = {
     uv: {
       type: "sw",
-      file: "/@/sw.js",
+      file: "/data/sw.js",
       config: window.__uv$config,
       func: null,
     },
     sj: {
       type: "sw",
-      file: "/$/sw.js",
+      file: "/assets/sw.js",
       config: window.__scramjet$config,
       func: async () => {
         if ((await settingsAPI.getItem("scramjet")) != "fixed") {
           const scramjet = new ScramjetController(window.__scramjet$config);
-          scramjet.init("/$/sw.js").then(async () => {
+          scramjet.init().then(async () => {
             await proxy.setTransports();
           });
 
@@ -39,19 +39,13 @@ document.addEventListener("DOMContentLoaded", async () => {
           await settingsAPI.setItem("scramjet", "fixed");
         } else {
           const scramjet = new ScramjetController(window.__scramjet$config);
-          scramjet.init("/$/sw.js").then(async () => {
+          scramjet.init().then(async () => {
             await proxy.setTransports();
           });
 
           console.log("Scramjet Service Worker registered.");
         }
       },
-    },
-    dy: {
-      type: "sw",
-      file: "/&/sw.js",
-      config: window.__dynamic$config,
-      func: null,
     },
     auto: {
       type: "multi",

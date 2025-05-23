@@ -110,19 +110,6 @@ class Render implements renderInterface {
           this.nightmare.createElement("li", {}, [
             this.nightmare.createElement(
               "div",
-              { class: "utilityIcon", id: "home" },
-              [
-                this.nightmare.createElement(
-                  "i",
-                  { "data-lucide": "house" },
-                  [],
-                ),
-              ],
-            ),
-          ]),
-          this.nightmare.createElement("li", {}, [
-            this.nightmare.createElement(
-              "div",
               { class: "utilityIcon", id: "backward" },
               [
                 this.nightmare.createElement(
@@ -154,6 +141,19 @@ class Render implements renderInterface {
                 this.nightmare.createElement(
                   "i",
                   { class: "forwardButton", "data-lucide": "arrow-right" },
+                  [],
+                ),
+              ],
+            ),
+          ]),
+          this.nightmare.createElement("li", {}, [
+            this.nightmare.createElement(
+              "div",
+              { class: "utilityIcon", id: "home" },
+              [
+                this.nightmare.createElement(
+                  "i",
+                  { "data-lucide": "house" },
                   [],
                 ),
               ],
@@ -260,13 +260,6 @@ class Render implements renderInterface {
         ]),
         this.nightmare.createElement("hr", {}, []),
         this.nightmare.createElement("li", {}, [
-          this.nightmare.createElement(
-            "div",
-            { id: "aiShortcut", class: "coming-soon", title: "COMING SOON" },
-            [this.nightmare.createElement("i", { "data-lucide": "bot" }, [])],
-          ),
-        ]),
-        this.nightmare.createElement("li", {}, [
           this.nightmare.createElement("div", { id: "chatShortcut" }, [
             this.nightmare.createElement(
               "i",
@@ -274,20 +267,6 @@ class Render implements renderInterface {
               [],
             ),
           ]),
-        ]),
-        this.nightmare.createElement("hr", {}, []),
-        this.nightmare.createElement("li", {}, [
-          this.nightmare.createElement(
-            "div",
-            { id: "musicShortcut", class: "coming-soon", title: "Music" },
-            [
-              this.nightmare.createElement(
-                "i",
-                { "data-lucide": "headphones" },
-                [],
-              ),
-            ],
-          ),
         ]),
         this.nightmare.createElement("hr", {}, []),
         this.nightmare.createElement("li", {}, [
@@ -364,23 +343,18 @@ class Render implements renderInterface {
       sidebar!.classList.remove("operagx");
       sidebar!.classList.remove("opera");
       sidebar!.classList.remove("arc");
-      sidebar!.classList.remove("vivaldi");
       browser!.classList.remove("operagx");
       browser!.classList.remove("opera");
       browser!.classList.remove("arc");
-      browser!.classList.remove("vivaldi");
       tabs!.classList.remove("operagx");
       tabs!.classList.remove("opera");
       tabs!.classList.remove("arc");
-      tabs!.classList.remove("vivaldi");
       bar!.classList.remove("operagx");
       bar!.classList.remove("opera");
       bar!.classList.remove("arc");
-      bar!.classList.remove("vivaldi");
       IFcontainer!.classList.remove("operagx");
       IFcontainer!.classList.remove("opera");
       IFcontainer!.classList.remove("arc");
-      IFcontainer!.classList.remove("vivaldi");
       sidebar!.classList.add(style);
       browser!.classList.add(style);
       tabs!.classList.add(style);
@@ -431,23 +405,18 @@ class Render implements renderInterface {
         sidebar!.classList.remove("operagx");
         sidebar!.classList.remove("opera");
         sidebar!.classList.remove("arc");
-        sidebar!.classList.remove("vivaldi");
         browser!.classList.remove("operagx");
         browser!.classList.remove("opera");
         browser!.classList.remove("arc");
-        browser!.classList.remove("vivaldi");
         tabs!.classList.remove("operagx");
         tabs!.classList.remove("opera");
         tabs!.classList.remove("arc");
-        tabs!.classList.remove("vivaldi");
         bar!.classList.remove("operagx");
         bar!.classList.remove("opera");
         bar!.classList.remove("arc");
-        bar!.classList.remove("vivaldi");
         IFcontainer!.classList.remove("operagx");
         IFcontainer!.classList.remove("opera");
         IFcontainer!.classList.remove("arc");
-        IFcontainer!.classList.remove("vivaldi");
         sidebar!.classList.add(style);
         browser!.classList.add(style);
         tabs!.classList.add(style);

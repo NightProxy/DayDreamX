@@ -610,9 +610,7 @@ class Functions implements FuncInterface {
   navbarfunctions() {
     const navbar = document.querySelector(".navbar");
     const games = navbar!.querySelector("#gamesShortcut");
-    const ai = navbar!.querySelector("#aiShortcut");
     const chat = navbar!.querySelector("#chatShortcut") as HTMLButtonElement;
-    const music = navbar!.querySelector("#musicShortcut");
     const history = navbar!.querySelector("#historyShortcut");
     // const github = navbar!.querySelector("#gitShortcut");
     const settings = navbar!.querySelector("#settShortcut");
@@ -626,19 +624,8 @@ class Functions implements FuncInterface {
       iframe!.setAttribute("src", url);
     });
 
-    ai!.addEventListener("click", () => {
-      alert("This feature is coming soon!");
-    });
-
-    const content = this.ui.createElement(
-      "iframe",
-      { class: "news", src: "https://night-network.changelogfy.com/" },
-      [],
-    );
-    this.nightmarePlugins.sidepanel.attachTo(chat, content);
-
-    music!.addEventListener("click", () => {
-      console.log("opening music");
+    chat!.addEventListener("click", async () => {
+      window.open("https://discord.night-x.com", "_blank");
     });
 
     history!.addEventListener("click", async () => {

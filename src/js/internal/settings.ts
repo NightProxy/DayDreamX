@@ -13,7 +13,7 @@ const initializeDropdown = async (
   optionsId: string,
   settingsKey: string,
   defaultValue: string,
-  functions: Function | null = null,
+  functions: Function | null = null
 ) => {
   const dropdownButton = document.getElementById(buttonId);
   const dropdownOptions = document.getElementById(optionsId);
@@ -29,20 +29,20 @@ const initializeDropdown = async (
   }
   if (!buttonText) {
     console.error(
-      `Button text element not found within dropdown button with id "${buttonId}".`,
+      `Button text element not found within dropdown button with id "${buttonId}".`
     );
     return;
   }
 
   const savedValue = (await settingsAPI.getItem(settingsKey)) || defaultValue;
   const selectedOption = dropdownOptions.querySelector(
-    `[data-value="${savedValue}"]`,
+    `[data-value="${savedValue}"]`
   );
   if (selectedOption) {
     buttonText.textContent = selectedOption.textContent;
   } else {
     console.warn(
-      `No option found for value "${savedValue}" in dropdown with id "${optionsId}".`,
+      `No option found for value "${savedValue}" in dropdown with id "${optionsId}".`
     );
   }
 
@@ -54,7 +54,7 @@ const initializeDropdown = async (
         setTimeout(() => {
           dropdown.setAttribute(
             "style",
-            "display:none;opacity:0;filter:blur(5px);",
+            "display:none;opacity:0;filter:blur(5px);"
           );
         }, 200);
       }
@@ -112,7 +112,7 @@ document.addEventListener("click", (event: any) => {
         setTimeout(() => {
           dropdownOptions.setAttribute(
             "style",
-            "display:none;opacity:0;filter:blur(5px);",
+            "display:none;opacity:0;filter:blur(5px);"
           );
         }, 200);
       }
@@ -122,7 +122,7 @@ document.addEventListener("click", (event: any) => {
 const initSwitch = async (
   item: HTMLInputElement,
   setting: string,
-  functionToCall: Function | null,
+  functionToCall: Function | null
 ) => {
   const switchElement = item;
   if (!switchElement) {
@@ -152,7 +152,7 @@ uploadBGInput!.addEventListener("change", function (event: any) {
     var backgroundImage = e.target!.result;
     await settingsAPI.setItem(
       "theme:background-image",
-      backgroundImage as string,
+      backgroundImage as string
     );
     eventsAPI.emit("theme:background-change", null);
   };
@@ -160,6 +160,28 @@ uploadBGInput!.addEventListener("change", function (event: any) {
 });
 
 document.addEventListener("DOMContentLoaded", async () => {
+  document.querySelector(".sideSnav")!.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      const element = document.querySelector(link.getAttribute("section")!);
+      if (element) {
+        element.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+          inline: "nearest",
+        });
+      }
+    });
+    link.querySelector("*")!.addEventListener("click", () => {
+      const element = document.querySelector(link.getAttribute("section")!);
+      if (element) {
+        element.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+          inline: "nearest",
+        });
+      }
+    });
+  });
   //Cloaking
   initializeDropdown("tabCloakButton", "tabCloakOptions", "tabCloak", "off");
   initializeDropdown("URL-cloakButton", "URL-cloakOptions", "URL_Cloak", "off");
@@ -168,7 +190,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     "autoCloak",
     function () {
       eventsAPI.emit("cloaking:auto-toggle", null);
-    },
+    }
+  );
+  initSwitch(
+    document.getElementById("antiCloseSwitch") as HTMLInputElement,
+    "antiClose",
+    null
   );
 
   //Apperance
@@ -182,7 +209,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       setTimeout(() => {
         eventsAPI.emit("UI:changeLayout", null);
       }, 100);
-    },
+    }
   );
   initializeDropdown(
     "UIStyleButton",
@@ -196,7 +223,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         eventsAPI.emit("UI:changeStyle", null);
         eventsAPI.emit("theme:template-change", null);
       }, 100);
-    },
+    }
   );
   var colorPicker = new (iro.ColorPicker as any)(".colorPicker", {
     width: 80,
@@ -230,7 +257,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       setTimeout(() => {
         eventsAPI.emit("theme:template-change", null);
       }, 100);
-    },
+    }
   );
 
   // Searching
@@ -239,18 +266,18 @@ document.addEventListener("DOMContentLoaded", async () => {
     "transportButton",
     "transportOptions",
     "transports",
-    "libcurl",
+    "libcurl"
   );
   initializeDropdown(
     "searchButton",
     "searchOptions",
     "search",
-    "https://duckduckgo.com/?q=%s",
+    "https://duckduckgo.com/?q=%s"
   );
 
   // Load and handle visibility of wisp and bare settings
   const wispSetting = document.getElementById(
-    "wispSetting",
+    "wispSetting"
   ) as HTMLInputElement;
   if (wispSetting) {
     wispSetting.value =
@@ -282,7 +309,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 function saveInputValueAsButton(
   button: HTMLButtonElement,
   input: HTMLInputElement,
-  key: string,
+  key: string
 ) {
   button.addEventListener("click", async () => {
     await settingsAPI.setItem(key, input.value);
@@ -293,7 +320,7 @@ function saveInputValueAsButton(
 saveInputValueAsButton(
   document.getElementById("saveWispSetting") as HTMLButtonElement,
   document.getElementById("wispSetting") as HTMLInputElement,
-  "wisp",
+  "wisp"
 );
 
 document
