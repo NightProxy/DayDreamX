@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const windowing = new Windowing();
   const globalFunctions = new DDXGlobal();
   const render = new Render(
-    document.getElementById("browser-container") as HTMLDivElement
+    document.getElementById("browser-container") as HTMLDivElement,
   );
   const items = new Items();
   const utils = new Utils();
@@ -114,14 +114,14 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (searchValue.startsWith("daydream://")) {
         const url = (await proto.processUrl(searchValue)) || "/internal/error/";
         const iframe = items.iframeContainer!.querySelector(
-          "iframe.active"
+          "iframe.active",
         ) as HTMLIFrameElement | null;
         iframe!.setAttribute("src", url);
       } else {
         if (proxySetting === "auto") {
           const result = (await proxy.automatic(
             proxy.search(searchValue),
-            swConfig
+            swConfig,
           )) as Record<string, any>;
           swConfigSettings = result;
           window.SWSettings = swConfigSettings;
@@ -145,7 +145,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.log("swConfigSettings:", swConfigSettings);
         console.log(
           "swConfigSettings.func exists:",
-          typeof swConfigSettings.func === "function"
+          typeof swConfigSettings.func === "function",
         );
         if (swConfigSettings && typeof swConfigSettings.func === "function") {
           swConfigSettings.func();
@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         console.log(
           `Using proxy: ${proxySetting}, Settings are: ` +
-            (await swConfigSettings)
+            (await swConfigSettings),
         );
         console.log(swConfigSettings);
 
@@ -174,7 +174,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   window.__uv$config.encodeUrl(proxy.search(searchValue));
               }
               const activeIframe = document.querySelector(
-                "iframe.active"
+                "iframe.active",
               ) as HTMLIFrameElement;
               if (activeIframe) {
                 activeIframe.src = encodedUrl;

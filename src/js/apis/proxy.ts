@@ -96,8 +96,11 @@ class Proxy implements ProxyInterface {
     switch (swConfig.type) {
       case "sw":
         if ("serviceWorker" in navigator) {
-          const scpe: string  = swConfig.config.prefix.match(/^\/[^/]+\//)?.[0] || '';
-          await navigator.serviceWorker.register(swConfig.file, { scope: scpe});
+          const scpe: string =
+            swConfig.config.prefix.match(/^\/[^/]+\//)?.[0] || "";
+          await navigator.serviceWorker.register(swConfig.file, {
+            scope: scpe,
+          });
 
           navigator.serviceWorker.ready.then(async () => {
             await this.setTransports().then(async () => {

@@ -182,7 +182,7 @@ class Functions implements FuncInterface {
 
       const script = iframeDocument.createElement("script");
       script.type = "text/javascript";
-      script.src = location.origin + "/assets/js/lib/eruda/eruda.js";
+      script.src = location.origin + "/core/inspect.js";
       script.onload = () => {
         this.erudaScriptLoaded = true;
         this.erudaScriptInjecting = false;
@@ -204,8 +204,8 @@ class Functions implements FuncInterface {
 			eruda.init({
 				defaults: {
 					displaySize: 50,
-					transparency: 0.9,
-					theme: 'Material Palenight'
+					transparency: 0.65,
+					theme: 'Night Owl'
 				}
 			});
 			eruda.show();
@@ -222,6 +222,7 @@ class Functions implements FuncInterface {
       script.type = "text/javascript";
       script.textContent = `
 			eruda.hide();
+      eruda.destroy();
 			document.currentScript.remove();
 		`;
       iframeDocument.body.appendChild(script);
@@ -355,7 +356,7 @@ class Functions implements FuncInterface {
           ]),
         ],
       ),
-      this.ui.createElement("div", { class: "menu-row" }, [
+      /*this.ui.createElement("div", { class: "menu-row" }, [
         this.ui.createElement("span", { style: "margin: 0px 20px;" }, ["Zoom"]),
         // Zoom Out
         this.ui.createElement(
@@ -393,7 +394,27 @@ class Functions implements FuncInterface {
           },
           [this.ui.createElement("i", { "data-lucide": "fullscreen" }, [])],
         ),
-      ]),
+      ]),*/
+      // Fullscreen
+      this.ui.createElement(
+        "div",
+        {
+          class: "menu-item",
+          id: "fullscreen",
+          onclick: () => {
+            this.goFullscreen();
+          },
+        },
+        [
+          this.ui.createElement("i", { "data-lucide": "fullscreen" }, []),
+          this.ui.createElement("span", { class: "menu-label" }, [
+            "Fullscreen",
+          ]),
+          this.ui.createElement("span", { class: "menu-key" }, [
+            "Alt + Shift + F",
+          ]),
+        ],
+      ),
       // Bookmarks
       this.ui.createElement(
         "div",
@@ -461,7 +482,7 @@ class Functions implements FuncInterface {
         [
           this.ui.createElement("i", { "data-lucide": "blocks" }, []),
           this.ui.createElement("span", { class: "menu-label" }, [
-            "Extensions (Soon)",
+            "Extensions",
           ]),
           this.ui.createElement("span", { class: "menu-key" }, [
             "Alt + Shift + E",
@@ -481,7 +502,7 @@ class Functions implements FuncInterface {
         [
           this.ui.createElement("i", { "data-lucide": "code-xml" }, []),
           this.ui.createElement("span", { class: "menu-label" }, [
-            "Inspect Element",
+            "Developer Tools",
           ]),
           this.ui.createElement("span", { class: "menu-key" }, [
             "Alt + Shift + I",

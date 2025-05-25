@@ -435,7 +435,8 @@ class Tabs implements TabsInterface {
         }
 
         if (favicon) {
-          let faviconUrl: string | null | undefined = favicon.href || favicon.getAttribute("href");
+          let faviconUrl: string | null | undefined =
+            favicon.href || favicon.getAttribute("href");
           const faviconImage = tabElement.querySelector(".tab-favicon");
 
           faviconUrl = await this.proxy.getFavicon(
