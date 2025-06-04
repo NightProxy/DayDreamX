@@ -1050,5 +1050,11 @@
     "link": "https://humanornot.so/",
     "image": "/assets/imgs/g/human.png",
     "categories": ["all"]
+  },
+  {
+    "name": "Poker",
+    "link": "https://www.247freepoker.com",
+    "image": "/assets/imgs/g/poker.webp",
+    "categories": ["all"]
   }
 ]
