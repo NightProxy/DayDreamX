@@ -30,6 +30,14 @@ class Nightmare {
     });
     return element;
   }
+
+  queryComponent(componentName) {
+    return document.querySelector(`[component="${componentName}"]`);
+  }
+
+  queryComponentAll(componentName) {
+    return document.querySelectorAll(`[component="${componentName}"]`);
+  }
 }
 
 class Menu {
@@ -52,7 +60,7 @@ class Menu {
         this.ui.createElement("span", { class: "material-symbols-outlined" }, [
           "close",
         ]),
-      ],
+      ]
     );
     closeButton.onclick = () => this.closeMenu();
 
@@ -68,7 +76,7 @@ class Menu {
         this.ui.createElement("span", { class: "material-symbols-outlined" }, [
           "keyboard_arrow_down",
         ]),
-      ],
+      ]
     );
     this.dropdownButton.addEventListener("click", () => {
       const isVisible = this.dropdownOptions.style.display === "block";
@@ -187,11 +195,11 @@ class ContextMenu {
               {
                 onclick: item.action,
               },
-              [item.text],
+              [item.text]
             ),
-          ],
-        ),
-      ),
+          ]
+        )
+      )
     );
 
     document.body.appendChild(this.currentMenu);

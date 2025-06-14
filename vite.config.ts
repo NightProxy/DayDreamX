@@ -3,6 +3,7 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import { ViteMinifyPlugin } from "vite-plugin-minify";
 import { sync } from "glob";
 import { resolve } from "path";
+import obfuscatorPlugin from "vite-plugin-javascript-obfuscator";
 import { normalizePath } from "vite";
 import { viteStaticCopy } from "vite-plugin-static-copy";
 //@ts-expect-error
@@ -11,6 +12,7 @@ import { libcurlPath } from "@mercuryworkshop/libcurl-transport";
 import { baremuxPath } from "@mercuryworkshop/bare-mux/node";
 import { uvPath } from "@titaniumnetwork-dev/ultraviolet";
 import { scramjetPath } from "@mercuryworkshop/scramjet";
+import htmlMinify from 'vite-plugin-html-minify';
 import { server as wisp } from "@mercuryworkshop/wisp-js/server";
 
 const pages: Record<string, string> = {
@@ -103,6 +105,47 @@ export default defineConfig({
           rename: "inspect.js",
         },
       ],
+    }),
+    obfuscatorPlugin({
+      options: {
+        compact: true,
+        controlFlowFlattening: false, // safer, more compatible
+        deadCodeInjection: false,     // can break some code if true
+        debugProtection: false,
+        disableConsoleOutput: true,   // optionally strip console.* calls
+        identifierNamesGenerator: 'hexadecimal',
+        renameGlobals: false,         // can break scope-based logic
+        renameProperties: false,      // breaks DOM & Tailwind if on
+        selfDefending: false,         // makes debugging harder
+        simplify: true,
+        splitStrings: true,
+        splitStringsChunkLength: 10,
+        stringArray: true,
+        stringArrayThreshold: 0.75,
+        stringArrayRotate: true,
+        stringArrayShuffle: true,
+        stringArrayEncoding: ['base64'],
+        stringArrayWrappersType: 'variable',
+        stringArrayWrappersCount: 1,
+        target: 'browser',
+        unicodeEscapeSequence: false,
+        exclude: [
+          `${newScramPath}/*`,
+          `${newUVPath}/*`,
+          "core/inspect.js",
+          "epoxy/*",
+          "libcurl/*",
+          "baremux/*",
+        ]
+      }
+    }),
+    htmlMinify({
+      collapseWhitespace: true,
+      removeComments: true,
+      removeRedundantAttributes: true,
+      useShortDoctype: true,
+      minifyCSS: true,
+      minifyJS: false, // JS is obfuscated separately
     }),
   ],
   appType: "mpa",
