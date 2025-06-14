@@ -66,7 +66,7 @@ The json files should follow this format:
 {
   "name": "game name",
   "link": "game url that will get proxied",
-  "image": "/assets/imgs/g/{name of the game without spaces}.webp",
+  "image": "/res/g/{name of the game without spaces}.webp",
   "categories": ["all", "cat1", "cat2"]
 }
 ```

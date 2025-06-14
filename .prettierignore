@@ -3,7 +3,7 @@ node_modules/
 package-lock.json
 package.json
 README.md
-public/static/&/
-public/static/@/
-public/static/$/
-public/static/~/
+public/assets/
+public/data/
+public/assets/
+public/~/

@@ -1,29 +1,34 @@
 import express from "express";
 import path from "path";
 import axios from "axios";
-import { URL, parse } from "url";
+import { URL } from "url";
 import contentType from "content-type";
 
 const router = express.Router();
 const __dirname = process.cwd();
 
 router.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public/pages/index.html"));
+  res.sendFile(path.join(__dirname, "dist/index.html"));
 });
 
 router.get("/results/:query", async (req, res) => {
   const { query } = req.params;
 
-  const reply = await fetch(
-    `http://api.duckduckgo.com/ac?q=${query}&format=json`,
-  ).then((resp) => resp.json());
-
-  res.send(reply);
+  try {
+    const response = await fetch(
+      `http://api.duckduckgo.com/ac?q=${query}&format=json`,
+    );
+    const reply = await response.json();
+    res.send(reply);
+  } catch (error) {
+    console.error("Error fetching search results:", error);
+    res.status(500).send("Failed to fetch search results");
+  }
 });
 
 router.use(
   "/internal/",
-  express.static(path.join(__dirname, "public/pages/internal/")),
+  express.static(path.join(__dirname, "dist/internal/")),
 );
 
 router.use("/internal/icons/:url(*)", async (req, res) => {
@@ -33,11 +38,13 @@ router.use("/internal/icons/:url(*)", async (req, res) => {
   url = url.replace("https://", "");
   url = url.replace("http://", "");
   let proxiedUrl;
+
   try {
     proxiedUrl = "https://icon.horse/icon/" + url;
   } catch (err) {
     console.error(`Failed to decode or decrypt URL: ${err}` + `URL: ${url}`);
-    return res.status(400).send("Invalid URL");
+    res.status(400).send("Invalid URL");
+    return;
   }
 
   try {
@@ -64,7 +71,7 @@ router.use("/internal/icons/:url(*)", async (req, res) => {
 
 router.use((req, res) => {
   res.status(404);
-  res.sendFile(path.join(__dirname, "public/pages/internal/error/index.html"));
+  res.sendFile(path.join(__dirname, "dist/internal/error/index.html"));
 });
 
 export default router;

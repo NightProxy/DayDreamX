@@ -1,33 +1,50 @@
 {
   "name": "daydreamx",
-  "description": "",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "type": "module",
-  "engines": {
-    "npm": ">=7.0.0",
-    "node": ">=16.0.0"
-  },
   "scripts": {
-    "start": "node index.js",
-    "format": "prettier --write ."
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "format": "prettier --write .",
+    "start": "node index.js"
   },
-  "author": "Amplify",
-  "license": "AGPL-3.0-only",
+  "devDependencies": {
+    "@types/draggabilly": "^2.1.6",
+    "@types/js-cookie": "^3.0.6",
+    "@types/sortablejs": "^1.15.8",
+    "glob": "^11.0.1",
+    "prettier": "^3.5.3",
+    "vite": "^6.2.6",
+    "vite-plugin-minify": "^2.1.0",
+    "vite-plugin-static-copy": "^2.3.1",
+    "vite-tsconfig-paths": "^5.1.4"
+  },
   "dependencies": {
+    "@jaames/iro": "^5.5.2",
     "@mercuryworkshop/bare-mux": "^2.1.7",
     "@mercuryworkshop/epoxy-transport": "^2.1.27",
-    "@mercuryworkshop/libcurl-transport": "^1.4.0",
+    "@mercuryworkshop/libcurl-transport": "^1.5.0",
+    "@mercuryworkshop/scramjet": "https://github.com/MercuryWorkshop/scramjet/releases/download/latest/mercuryworkshop-scramjet-1.0.2-dev.tgz",
     "@mercuryworkshop/wisp-js": "^0.3.3",
+    "@nightnetwork/obscura": "^1.0.0",
     "@titaniumnetwork-dev/ultraviolet": "^3.2.10",
-    "axios": "^1.7.2",
-    "chalk": "^5.2.0",
+    "axios": "^1.8.4",
+    "chalk": "^5.4.1",
     "compression": "^1.8.0",
     "content-type": "^1.0.5",
     "cors": "^2.8.5",
-    "express": "^4.18.2",
-    "gradient-string": "^3.0.0"
-  },
-  "devDependencies": {
-    "prettier": "3.2.1"
+    "draggabilly": "^3.0.0",
+    "eruda": "^3.4.1",
+    "express": "^4.21.2",
+    "express-serve-static-core": "^0.1.1",
+    "filer": "^1.4.1",
+    "gradient-string": "^3.0.0",
+    "js-cookie": "^3.0.5",
+    "jszip": "^3.10.1",
+    "localforage": "^1.10.0",
+    "lucide": "^0.483.0",
+    "sortablejs": "^1.15.6",
+    "typescript": "^5.8.3"
   }
 }
