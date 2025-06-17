@@ -13,7 +13,7 @@ import { baremuxPath } from "@mercuryworkshop/bare-mux/node";
 import { uvPath } from "@titaniumnetwork-dev/ultraviolet";
 import { scramjetPath } from "@mercuryworkshop/scramjet";
 import htmlMinify from 'vite-plugin-html-minify';
-import { server as wisp } from "@mercuryworkshop/wisp-js/server";
+// import { server as wisp } from "@mercuryworkshop/wisp-js/server";
 
 const pages: Record<string, string> = {
   index: resolve(__dirname, "index.html"),
@@ -106,7 +106,7 @@ export default defineConfig({
         },
       ],
     }),
-    obfuscatorPlugin({
+    /*obfuscatorPlugin({
       options: {
         compact: true,
         controlFlowFlattening: false, // safer, more compatible
@@ -146,7 +146,7 @@ export default defineConfig({
       useShortDoctype: true,
       minifyCSS: true,
       minifyJS: false, // JS is obfuscated separately
-    }),
+    }),*/
   ],
   appType: "mpa",
   build: {

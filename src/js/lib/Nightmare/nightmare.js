@@ -38,6 +38,25 @@ class Nightmare {
   queryComponentAll(componentName) {
     return document.querySelectorAll(`[component="${componentName}"]`);
   }
+
+  setState(componentName, state) {
+    const component = componentName;
+    try {
+      component.setAttribute("state", state);
+    } catch (error) {
+      console.error(`Failed to set state for component ${componentName}:`, error);
+    }
+  }
+
+  getState(componentName) {
+    const component = this.queryComponent(componentName);
+    if (component) {
+      return component.getAttribute("state");
+    }
+    return null;
+  }
+
+
 }
 
 class Menu {
