@@ -23,22 +23,22 @@ self.__scramjet$config = {
     syncxhr: false
   },
   codec: {
-    encode: `
+    encode: (url) => {
       if (!url) return url;
       const base64 = btoa(url)
-        .replace(/\\+/g, '-')
-        .replace(/\\//g, '_')
-        .replace(/=+$/, '');
+        .replace(/\+/g, '-')
+        .replace(/\//g, '_')
+        .replace(/=+$/, '')
       return encodeURIComponent(base64);
-    `,
+        },
   
-    decode: `
+    decode: (url) => {
   if (!url) return url;
   const base64 = decodeURIComponent(url)
     .replace(/-/g, '+')
     .replace(/_/g, '/');
   const padded = base64.padEnd(Math.ceil(base64.length / 4) * 4, '=');
   return atob(padded);
-`,
+    },
   },
 };

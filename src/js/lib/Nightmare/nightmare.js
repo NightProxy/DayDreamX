@@ -30,6 +30,33 @@ class Nightmare {
     });
     return element;
   }
+
+  queryComponent(componentName) {
+    return document.querySelector(`[component="${componentName}"]`);
+  }
+
+  queryComponentAll(componentName) {
+    return document.querySelectorAll(`[component="${componentName}"]`);
+  }
+
+  setState(componentName, state) {
+    const component = componentName;
+    try {
+      component.setAttribute("state", state);
+    } catch (error) {
+      console.error(`Failed to set state for component ${componentName}:`, error);
+    }
+  }
+
+  getState(componentName) {
+    const component = this.queryComponent(componentName);
+    if (component) {
+      return component.getAttribute("state");
+    }
+    return null;
+  }
+
+
 }
 
 class Menu {
@@ -52,7 +79,7 @@ class Menu {
         this.ui.createElement("span", { class: "material-symbols-outlined" }, [
           "close",
         ]),
-      ],
+      ]
     );
     closeButton.onclick = () => this.closeMenu();
 
@@ -68,7 +95,7 @@ class Menu {
         this.ui.createElement("span", { class: "material-symbols-outlined" }, [
           "keyboard_arrow_down",
         ]),
-      ],
+      ]
     );
     this.dropdownButton.addEventListener("click", () => {
       const isVisible = this.dropdownOptions.style.display === "block";
@@ -187,11 +214,11 @@ class ContextMenu {
               {
                 onclick: item.action,
               },
-              [item.text],
+              [item.text]
             ),
-          ],
-        ),
-      ),
+          ]
+        )
+      )
     );
 
     document.body.appendChild(this.currentMenu);

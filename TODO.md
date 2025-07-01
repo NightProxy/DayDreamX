@@ -1,49 +1,36 @@
-# V1:
-
-> ## APIs:
+> ## Base:
+> - [x] convert to TS
+> - [ ] Minification & obfuscation in the build step
 >
-> - History
-> - Bookmarks
-> - iFrameClient
-> - Proxy (stability)
-> - Tie Events API into everyting
+> ## Backends:
+> - [ ] Middleware injected into SW
+> - [ ] SJ fixes
+> - [ ] UV replacement
+>
+> ## APIs:
+> - [ ] Bookmarks
+> - [ ] History
+> - [ ] Extensions (finish)
+> - [ ] Profiles (finish)
 >
 > ## Internal Pages:
->
-> - Settings
-> - New Tab
-> - Bookmarks
-> - History
->
-> ## UI/UX:
->
-> - Themes System
-> - Nightmare Rendering and Elements
-
-# V2:
-
-> ## APIs:
->
-> - Extensions (finish)
-> - Profiles (finish)
->
-> ## Internal Pages:
->
-> - Extensions
-> - Profiles
-> - Setup
+> - [ ] Bookmarks
+> - [ ] History
+> - [ ] Extensions
+> - [ ] Profiles
+> - [ ] Setup
 >
 > ## UI/UX:
->
-> - increase rendering speed
+> - [ ] Redesign
+> - [ ] convert to TailwindCSS
+> - [ ] increase rendering speed (Potentially swap renderer)
 >
 > ## Tabs Upgrade:
 >
-> - Tab Pinning
-> - Tab Grouping
-> - Tab caching
+> - [ ] Tab Pinning
+> - [ ] Tab Grouping
 >
 > ## Search Suggestions:
 >
-> - Calculator
-> - AI prompt (maybe)
+> - [ ] Calculator
+> - [ ] AI prompt (maybe)
